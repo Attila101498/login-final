@@ -7,5 +7,13 @@ import { AccountService } from '@app/_services';
     templateUrl: 'layout.component.html' 
 })
 export class LayoutComponent {
-    constructor() {}
+    constructor(
+        private router: Router,
+        private accountService: AccountService
+    ) {
+        // továbbítás a home oldalra, ha be vagyunk jelentkezve
+        if (this.accountService.userValue) {
+            this.router.navigate(['/']);
+        }
+    }
 }
